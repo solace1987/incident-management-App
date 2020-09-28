@@ -3,9 +3,11 @@
 
 class Data{
 
-    constructor(model,info){
+    constructor(model,info,update){
         this.model=model;
         this.dataModel=new model(info);
+        this.info=info;
+        this.update=update;
     }
 
    
@@ -21,17 +23,35 @@ class Data{
 
     };
 
-    find(){
+    async find(){
 
-        this.model.find()
-        .then(doc=>{
-            console.log(doc)
+        await this.model.find(this.info)
+        .then( (doc)=>{
+            return doc
         })
         .catch(err=>{
             console.error(err)
         })
     }
+
+    findAndUpdate(){
+    
+        this.model.findOneAndUpdate(this.info,this.update)
+        .then(doc=>{
+            console.log(doc)
+        }).catch(err=>console.log(err))
+    
+    }
+    findAndDelete(){
+    
+        this.model.findOneAndRemove(this.info)
+        .then(doc=>{
+            console.log(doc)
+        }).catch(err=>console.log(err))
+    
+    }
 }
+
 
 /**class findData{
     constructor(model,searchQuery){
@@ -53,4 +73,4 @@ class Data{
 **/
 
 
-module.exports=Data
+module.exports= Data

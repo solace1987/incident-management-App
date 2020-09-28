@@ -1,36 +1,28 @@
 const express = require("express");
-const path = require("path");
 const config = require("./config/config");
 const exphbs = require("express-handlebars");
 const incident = require("./routes/api/incident");
 const db = require("./services/db");
-const users= require('./controller/userdb')
-
-
+const user= require('./routes/api/userApi')
+const bodyParser= require("body-parser")
 const app = express();
-app.use("/incident", incident);
+
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
 //handlebars middleware
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 app.use(express.static('public'));
-app.get("/", (req, res) => {
 
- 
-users.fetchUser({firstname:'jude'})
-res.render("index");
-});
+//app.use(express.urlencoded({extended:true})); //Parse URL-encoded bodies
+app.use('/user', user );
+app.use('/incident', incident);
 
-app.post("/", (req, res) => {
-  res.send("got a post request");
-});
-
-app.put("/", (req, res) => {
-  res.send("got a put request");
-});
-
-app.delete("/", (req, res) => {
-  res.send("gota delete request");
-});
+app.get("/",(req,res)=>{
+    res.render('index')
+})
 app.listen(config.port, () => {
   console.log(
     `Incident Management App started at http://${config.Server}:${config.port}`

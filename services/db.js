@@ -11,7 +11,7 @@ class Database{
 
     _connect(){
 
-        mongoose.connect(`mongodb://${config.dbHost}:${config.dbPort}/${config.database}`, { useNewUrlParser: true, useCreateIndex: true }) 
+        mongoose.connect(`mongodb://${config.dbHost}:${config.dbPort}/${config.database}`, { useNewUrlParser: true, useCreateIndex: true ,useFindAndModify: false,useUnifiedTopology: true  }) 
         .then(()=>{
             console.log('Database connection successful')
         })

@@ -1,0 +1,12 @@
+<div class="login">
+  
+<h2 style="text-align: center;"> Hello {{firstname}}</h2>
+
+<p style="text-align: center;">Please Enter your Password</p>
+<form method="POST"  class="canvas" action="/user">
+ <input style="visibility: hidden;" type='text' name='email' value={{email}}/>
+<input type='password' name="password" placeholder="Password" class="input-main"/>
+
+<button type="submit" class='button-main'>Login</button>
+</form>
+</div>

@@ -1,4 +1,3 @@
-const mongoose = require('mongoose')
 const UserModel = require("../models/users");
 const record=require('../controller/data');
 
@@ -10,11 +9,23 @@ const saveUser= (info)=>{
 
 }
 
-const fetchUser= (item)=>{
+ const fetchUser=  (item)=>{
 
     const data= new record(UserModel,item)
-    data.find();
+     data.find();
+}
+
+const fetchandUpdate= ((item,update)=>{
+
+    const data= new record(UserModel,item,update)
+    data.findAndUpdate()
+})
+
+const fetchandRemove= (item)=>{
+
+    const data= new record(UserModel,item)
+    data.findAndDelete()
 }
 
 
-module.exports={saveUser:saveUser,fetchUser:fetchUser}
+module.exports={saveUser:saveUser,fetchUser:fetchUser,fetchandUpdate:fetchandUpdate,fetchandRemove:fetchandRemove}

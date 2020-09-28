@@ -1,0 +1,78 @@
+<div class="incident ">
+<div class='incidentlist split'>
+<h2 class="dashheading">Welcome {{firstname}}</h2>
+<div>
+    <div class='summary'>
+        <div><h3>Total Incident</h3>
+        <p id='num'>20</p>
+        </div>
+        <div><h3>Resolved Issues</h3>
+        <p id='num'>20</p>
+        </div>
+        <div><h3>Pending Issues</h3>
+        <p id='num'>20</p>
+        </div>
+    </div>
+    <div>
+        <div>
+            {{incidents}}
+        </div>
+    </div>
+</div>
+<div class="incidentdata">
+<div id="card">
+    <div id='topcard'>
+        <div id="cardtop"><p>18/09/2020</p></div>
+        <div id="cardtop"> <p>NETWORK CARD FAULTY NEED REPLACEMENT</p></div>
+        <div id="cardtop"> <p id="status">OPEN</p> </div>
+    </div>
+    <div id="cardmid">
+        <p>There is network on my system, since morning. and it seems that there is a lot that is ment to be done to clear the road</p>
+    </div>
+    <div id="cardend">
+        <div>Comment</div>
+    </div>
+</div>
+<div id="card">
+    <div id='topcard'>
+        <div id="cardtop"><p>18/09/2020</p></div>
+        <div id="cardtop"> <p>NETWORK CARD FAULTY NEED REPLACEMENT</p></div>
+        <div id="cardtop"> <p id="status">OPEN</p> </div>
+    </div>
+    <div id="cardmid">
+        <p>There is network on my system, since morning. and it seems that there is a lot that is ment to be done to clear the road</p>
+    </div>
+    <div id="cardend">
+        <div>Comment</div>
+    </div>
+</div>
+<div id="card">
+    <div id='topcard'>
+        <div id="cardtop"><p>18/09/2020</p></div>
+        <div id="cardtop"> <p>NETWORK CARD FAULTY NEED REPLACEMENT</p></div>
+        <div id="cardtop"> <p id="status">OPEN</p> </div>
+    </div>
+    <div id="cardmid">
+        <p>There is network on my system, since morning. and it seems that there is a lot that is ment to be done to clear the road</p>
+    </div>
+    <div id="cardend">
+        <div>Comment</div>
+    </div>
+</div>
+</div>
+</div>
+
+<div class='incidentinput split'>
+<h3>Report an Incident</h3>
+<form method="POST" action="/incident">
+	<Label>Incident Description</Label>
+	<textarea name="discriptionUser" id="" cols="30" rows="10" placeholder="Describe your Issue"></textarea>
+    <input style="visibility: hidden;" type="text" name='dept' value={{dept}} />
+    <input  style="visibility: hidden;" type="text" name='username' value={{firstname}} />
+
+	<button type="submit">SEND</button>
+
+</form>
+<p style="color: #45a29e;">{{msg}} </p>
+</div>
+</div>
