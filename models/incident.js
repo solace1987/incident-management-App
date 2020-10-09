@@ -9,7 +9,8 @@ const incidentSchema = new mongoose.Schema({
     incidentCart: { type: String},
     discription:{ type: String},
     remark: { type: Array},
-    status:{ type: String},
+    status:{ type: String, default:'OPEN'},
+    userId:{type:String,required: true },
   
 });
 

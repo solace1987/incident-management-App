@@ -1,16 +1,16 @@
-<div class="incident ">
+
 <div class='incidentlist split'>
-<h2 class="dashheading">Welcome {{firstname}}</h2>
+<h2 class="dashheading">Welcome {{userDetail.firstname}}</h2>
 <div>
     <div class='summary'>
         <div><h3>Total Incident</h3>
-        <p id='num'>20</p>
+        <p id='num'>{{count}}</p>
         </div>
         <div><h3>Resolved Issues</h3>
-        <p id='num'>20</p>
+        <p id='num'>{{resolved incidentDetail}}</p>
         </div>
         <div><h3>Pending Issues</h3>
-        <p id='num'>20</p>
+        <p id='num'>{{statusCounter incidentDetail}}</p>
         </div>
     </div>
     <div>
@@ -19,60 +19,44 @@
         </div>
     </div>
 </div>
-<div class="incidentdata">
-<div id="card">
-    <div id='topcard'>
-        <div id="cardtop"><p>18/09/2020</p></div>
-        <div id="cardtop"> <p>NETWORK CARD FAULTY NEED REPLACEMENT</p></div>
-        <div id="cardtop"> <p id="status">OPEN</p> </div>
-    </div>
-    <div id="cardmid">
-        <p>There is network on my system, since morning. and it seems that there is a lot that is ment to be done to clear the road</p>
-    </div>
-    <div id="cardend">
-        <div>Comment</div>
-    </div>
+ <button onclick='refresh()' id="refresh">REFRESH</button>
+ <div  style='display: flex;' class="card header">
+    <div class="carditem date"><p>DATE</p></div>
+    <div class="carditem userd"><p>INCIDENT</p> </div>
+    <div class="carditem ad"> <p>CAUSE</p></div>
+    <div class="carditem stat"> <p>STATUS</p> </div>
+    <div class='imgcomm carditem' ><p>COMMENT</p></div>
+   
 </div>
-<div id="card">
-    <div id='topcard'>
-        <div id="cardtop"><p>18/09/2020</p></div>
-        <div id="cardtop"> <p>NETWORK CARD FAULTY NEED REPLACEMENT</p></div>
-        <div id="cardtop"> <p id="status">OPEN</p> </div>
-    </div>
-    <div id="cardmid">
-        <p>There is network on my system, since morning. and it seems that there is a lot that is ment to be done to clear the road</p>
-    </div>
-    <div id="cardend">
-        <div>Comment</div>
-    </div>
+<div >
+ {{#each incidentDetail}}  
+ 
+<div style='display: flex;' class="card">
+    <div class="carditem date"><p>{{ dater this.date}}</p></div>
+    <div class="carditem userd"><p>{{this.discriptionUser}}</p> </div>
+    <div class="carditem ad"> <p>{{this.discription}}</p></div>
+    <div class="carditem stat"> <p id="status" style={{statusColor this.status}}>{{this.status}}</p> </div>
+    <div class='imgcomm carditem' ><img src="/images/message.png" alt=""></div>
+   
+   
 </div>
-<div id="card">
-    <div id='topcard'>
-        <div id="cardtop"><p>18/09/2020</p></div>
-        <div id="cardtop"> <p>NETWORK CARD FAULTY NEED REPLACEMENT</p></div>
-        <div id="cardtop"> <p id="status">OPEN</p> </div>
-    </div>
-    <div id="cardmid">
-        <p>There is network on my system, since morning. and it seems that there is a lot that is ment to be done to clear the road</p>
-    </div>
-    <div id="cardend">
-        <div>Comment</div>
-    </div>
-</div>
+{{/each}}
 </div>
 </div>
 
 <div class='incidentinput split'>
+  <h3 class="warning" style="color: #df469a;"> Rotate your screen to See more option</option> </h3>
+
 <h3>Report an Incident</h3>
 <form method="POST" action="/incident">
 	<Label>Incident Description</Label>
 	<textarea name="discriptionUser" id="" cols="30" rows="10" placeholder="Describe your Issue"></textarea>
-    <input style="visibility: hidden;" type="text" name='dept' value={{dept}} />
-    <input  style="visibility: hidden;" type="text" name='username' value={{firstname}} />
+    <input style="visibility: hidden;" type="text" name='dept' value={{userDetail.dept}} />
+    <input style="visibility: hidden;" type="text" name='userId' value={{userDetail._id}} />
+    <input  style="visibility: hidden;" type="text" name='username' value={{userDetail.firstname}} />
 
-	<button type="submit">SEND</button>
+	<button  type="submit" onclick="displayMsg()" >SEND</button>
 
 </form>
-<p style="color: #45a29e;">{{msg}} </p>
-</div>
+<p id="msgbtn" style="color: #45a29e; padding:10px; display:none" >Your issue has been reported, Refresh to see update </p>
 </div>

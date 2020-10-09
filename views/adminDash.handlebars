@@ -1,0 +1,92 @@
+
+<div class='incidentlist split'>
+<h2 class="dashheading1">Welcome Admin</h2>
+<div>
+    <div class='summary'>
+        <div class="summa"><p>Total Incident:</p>
+        <p id='num'>10{{count}}</p>
+        </div>
+        <div class="summa"><p>Resolved Issues:</p>
+        <p id='num'>10{{ incidentDetail}}</p>
+        </div class="summa">
+        <div class="summa"><p>Pending Issues:</p>
+        <p id='num'>10{{ incidentDetail}}</p>
+        </div>
+    </div>
+    <div>
+        <div>
+            {{incidents}}
+        </div>
+    </div>
+</div>
+ <button onclick='refresh()' id="refresh">REFRESH</button>
+ <div  style='display: flex;' class="card header">
+    <div class="carditem date"><p>DATE</p></div>
+    <div class="carditem userd"><p>INCIDENT</p> </div>
+    <div class="carditem ad"> <p>CAUSE</p></div>
+    <div class="carditem user"> <p>USER</p> </div>
+    <div class="carditem stat"> <p>STATUS</p> </div>
+    <div class='imgcomm carditem' ><p>COMMENT</p></div>
+   
+</div>
+<div >
+ {{#each result}}  
+ 
+<div  style='display: flex;' class="card" onclick="getIncidentView(this.id)">
+    <div class="carditem date"><p>{{ dater this.date}}</p></div>
+    <div class="carditem userd"><p>{{this.discriptionUser}}</p> </div>
+    <div class="carditem ad"> <p>{{this.discription}}</p></div>
+    <div class="carditem stat"> <p id="user" >{{this.username}}</p> </div>
+    <div class="carditem stat"> <p id="status" >{{this.status}}</p> </div>
+    <div class='imgcomm carditem' ><img src="/images/message.png" alt=""></div>
+   <a id={{this._id}} onclick="getIncidentView(this.id)" href=""> Edit</a>
+   
+</div>
+{{/each}}
+</div>
+</div>
+
+<div class='incidentinput1 split'>
+ <a href="/incident?q=all"> <div id="alllink"><h3>All</h3></div></a>
+  <div id="todaylink"><h4>Today</h4></div>
+  <div id="monthlink"><h4>This Month</h4></div>
+  <div id="resolved"><h4>Resolved</h4></div>
+  <div id="pending"><h4>Pending</h4></div>
+  <div id="report"><h4>Report</h4></div>
+</div>
+<div class=signup>
+    <form action="">
+<input >
+
+<input type="text" value="" name="dept">
+ <select name="incidentCart" id="status" >
+         <option>Incident Category</option>
+        <option value="Open">Hardware</option>
+        <option value="Close">Software</option>
+        <option value="Close">Web/Cloud</option>
+</select>
+<input type="text" value="" name="discription">
+ <select name="status" id="status" >
+         <option>Incident Status</option>
+        <option value="Open">Prepress</option>
+        <option value="Close">Press</option>
+</select>
+<input type="submit">
+</form>
+<form action="/action_page.php">
+    <label for="fname">First Name</label>
+    <input type="text" id="fname" value="" name="username" placeholder="Username">
+    <label for="usdesc">User Descr</label>
+    <input type="text" id="usdesc" value="" name="discriptionUser" placeholder="User Discription">
+    <label for="dept">Department</label>
+    <input type="text" id="dept" value="" name="dept" placeholder="Department">
+      <label for="inccart">Department</label>
+    <select name="incidentCart" id="inccart" >
+         <option>Incident Category</option>
+        <option value="Hardware">Hardware</option>
+        <option value="Software">Software</option>
+        <option value="Web/Cloud">Web/Cloud</option>
+</select>
+    <input type="submit" value="Submit">
+  </form>
+</div>
